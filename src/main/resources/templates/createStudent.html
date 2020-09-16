@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>create-new-major</title>
+</head>
+<body>
+<h1 th:text="'Create New Major'"></h1>
+
+<form action="#" th:action="@{/saveStudent}" th:object="${students}"
+      method="post">
+
+    <table border="0" cellpadding="10">
+        <tr>
+            <td>Student FirstName:</td>
+            <td><input type="text" th:field="*{firstName}"/></td>
+        </tr>
+        <tr>
+            <td>Student LastName:</td>
+            <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td>Student Address:</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td>Student Age:</td>
+            <td><input type="text" th:field="*{age}"/></td>
+        </tr>
+        <tr>
+            <td>Major Id:</td>
+            <td><input type="text" th:field="*{major}"/></td>
+        </tr>
+        <tr>
+            <td>Subject Id:</td>
+            <td><input type="text" th:field="*{subjects}"/></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button type="submit">Save</button>
+            </td>
+        </tr>
+    </table>
+    <span>Select Id Major:</span>
+    <span>1:KHMT</span>
+    <span>2:KTPM</span>
+    <span>5:DDT</span>
+
+    <span></span>
+
+
+
+</form>
+</body>
+</html>

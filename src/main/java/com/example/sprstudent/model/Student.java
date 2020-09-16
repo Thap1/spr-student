@@ -33,4 +33,5 @@ public class Student {
     @JoinTable(name = "student_subject",joinColumns = @JoinColumn(name = "student_id"),
     inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> subjects = new HashSet<>();
+
 }

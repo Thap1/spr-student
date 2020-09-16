@@ -13,7 +13,8 @@ import java.util.Set;
 
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
-//    @Query("SELECT s FROM Subject s " +
-//            "WHERE s.subjectName = :search")
-//    Subject findByName(@Param("search") SubjectName s );
+    @Query("SELECT s FROM Subject s " +
+            "WHERE s.subjectName = :search")
+    Subject findByName(@Param("search") SubjectName s);
+//    Optional<Subject> findByName(SubjectName subjectName);
 }

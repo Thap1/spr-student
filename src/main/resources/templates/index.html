@@ -2,9 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Major</title>
 </head>
 <body>
- <h1 th:text="'List Student'"></h1>
+<h1 th:text="'Students List'"></h1>
+<table border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>Student ID</th>
+        <th>Student First Name</th>
+        <th>Student Last Name</th>
+        <th>Address</th>
+        <th>Major</th>
+        <th>Subject</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <a th:href="@{'/newStudent'}">New Student</a>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.address}"></td>
+        <td th:text="${student.major.nameMajor}"></td>
+        <td >
+            <div th:each="subject: ${student.subjects}">
+<!--                <a th:text="${subject.subjectName}"></a>-->
+                <a th:href="@{'/studentSubject/' + ${subject.id}}" th:text="${subject.subjectName}"></a>
+            </div>
+        </td>
+        <td>
+            <a th:href="@{'/studentDelete/' + ${student.id}}">Delete</a>
+            <a th:href="@{'/studentEdit/' + ${student.id}}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
