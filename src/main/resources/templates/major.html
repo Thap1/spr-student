@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Major</title>
+</head>
+<body>
+<h1 th:text="'Major List'"></h1>
+<table border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>Major ID</th>
+        <th>Major Name</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <a th:href="@{'/newMajor'}">New Person</a>
+    <tr th:each="major : ${majors}">
+        <td th:text="${major.id}">Product ID</td>
+        <td th:text="${major.nameMajor}">Name</td>
+        <td>
+            <a th:href="@{'/majorDelete/' + ${major.id}}">Delete</a>
+            <a th:href="@{'/majorEdit/' + ${major.id}}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

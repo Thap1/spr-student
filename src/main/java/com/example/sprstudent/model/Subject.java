@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
     @Enumerated(EnumType.STRING)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

@@ -12,50 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class SprStudentApplication implements CommandLineRunner {
+public class SprStudentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SprStudentApplication.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(SprStudentApplication.class, args);
+        System.out.println("----------------------Constructor");
     }
 
-    @Autowired
-    StudentRepository studentRepository;
-    @Autowired
-    private final MajorRepository majorRepository;
-    @Autowired
-    private final SubjectRepository subjectRepository;
-
-    @Override
-    public void run(String... args) throws Exception {
-        Student student = new Student();
-        Major major = new Major();
-        Set<Subject> subjectss = new HashSet<>();
-
-        Subject subjectKPM = subjectRepository.findById((long) 1)
-                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-        subjectss.add(subjectKPM);
-
-        major.setNameMajor("CNTT1");
-        major.setMajorId("2");
-
-        student.setFirstName("Hoangsssssssss");
-        student.setLastName("Thapaaaaaaaaaaaaaaaaaa");
-        student.setAddress("HP");
-        student.setAge((long) 22);
-        student.setMajor(major);
-        student.setSubjects(subjectss);
-
-
-//        student.setSubjects(null);
-
-        majorRepository.save(major);
-        studentRepository.save(student);
-    }
 }
