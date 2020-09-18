@@ -10,6 +10,10 @@
 
     <table border="0" cellpadding="10">
         <tr>
+            <td>Student ID:</td>
+            <td><input type="text" th:field="*{id}" readonly="readonly"/></td>
+        </tr>
+        <tr>
             <td>Student FirstName:</td>
             <td><input type="text" th:field="*{firstName}"/></td>
         </tr>
@@ -30,9 +34,18 @@
             <td><input type="text" th:field="*{major}"/></td>
         </tr>
         <tr>
-            <td>Subject Id:</td>
-            <td><input type="text" th:field="*{subjects}"/></td>
+            <td>Subject Name:</td>
+
+            <td>
+                <select th:field="*{subjects}">
+                    <option th:value="'1'" th:text="Bac"></option>
+                    <option th:value="'2'" th:text="Trung"></option>
+                    <option th:value="'3'" th:text="Nam"></option>
+                </select>
+            </td>
+
         </tr>
+
 
         <tr>
             <td colspan="2">

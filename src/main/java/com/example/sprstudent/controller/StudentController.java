@@ -35,7 +35,7 @@ public class StudentController {
     @RequestMapping("/")
     public String listStudent(Model model) {
         List<Student> students = studentRepository.findAll();
-//        Subject ktpm = subjectRepository.findById();
+
         model.addAttribute("students", students);
         return "/index";
     }
@@ -44,26 +44,39 @@ public class StudentController {
     public String newStudent(Model model) {
         Student students = new Student();
         model.addAttribute("students", students);
+        List<Major> major = majorRepository.findAll();
+        model.addAttribute("majorList", major);
         return "/createStudent";
     }
 
     @RequestMapping(value = "/saveStudent", method = RequestMethod.POST)
     public String saveStudent(@ModelAttribute("students") StudentParam studentParam) {
-
         Set<String> strSubject = studentParam.getSubjects();
         Set<Subject> subjects = new HashSet<>();
-        strSubject.forEach(role -> {
-            switch (role) {
-                case "KTPM_SUB":
-                    Subject ktpm = subjectRepository.findByName(SubjectName.KTPM_SUB);
-                    subjects.add(ktpm);
+        strSubject.forEach(sub -> {
+            switch (sub) {
+                case "1":
+                    Subject bac = subjectRepository.findByName(SubjectName.BAC);
+                    subjects.add(bac);
+                    break;
+                case "2":
+                    Subject trung = subjectRepository.findByName(SubjectName.TRUNG);
+                    subjects.add(trung);
                     break;
                 default:
-                    Subject dtvt = subjectRepository.findByName(SubjectName.DTVT_SUB);
-                    subjects.add(dtvt);
+                    Subject nam = subjectRepository.findByName(SubjectName.NAM);
+                    subjects.add(nam);
             }
         });
-        Student student = new Student(studentParam.getId(), studentParam.getFirstName(), studentParam.getLastName(), studentParam.getAddress(), studentParam.getAge(), studentParam.getMajor(), subjects);
+//        Student news
+        Student student = new Student();
+        student.setId(studentParam.getId());
+        student.setFirstName(studentParam.getFirstName());
+        student.setLastName(studentParam.getLastName());
+        student.setAddress(studentParam.getAddress());
+        student.setAge(studentParam.getAge());
+        student.setMajor(studentParam.getMajor());
+        student.setSubjects(subjects);
         studentRepository.save(student);
         return "redirect:/";
     }
